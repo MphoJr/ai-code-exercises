@@ -1,0 +1,38 @@
+Initial vs. Final Understanding
+At the outset, my understanding of the Task Manager project was limited to assumptions based on common structures:
+- I expected a frontend/backend separation, with React/Tailwind for UI and Node.js/Express or Java/Spring Boot for backend.
+- I assumed the presence of a Task entity, supported by enums for status and priority.
+- I guessed that export functionality would be handled in a utility or service layer.
+After applying structured prompts and deeper exploration:
+- I identified entry points (App.js for frontend, server.js or Application.java for backend).
+- The architecture follows a layered pattern: controllers → services → models.
+- The domain model includes not only Task, TaskStatus, and TaskPriority, but also supporting entities like User and TaskHistory.
+- Export functionality is best placed in the service layer, exposed via a controller endpoint, and triggered by UI components.
+
+Insights from Prompts
+- Project Structure Prompt: Helped confirm entry points and clarify architectural patterns. Misconceptions (e.g., assuming Python backend) were corrected.
+- Feature Location Prompt: Guided me to search for existing file operations and highlighted the service/controller layers as the right place for new export logic.
+- Domain Understanding Prompt: Clarified relationships between entities and introduced overlooked concepts like TaskHistory. Building a glossary of domain terms improved comprehension.
+- Practical Application Prompt: Provided a framework for planning the overdue-task rule, pointing to TaskService, TaskScheduler, and TaskStatus as modification points.
+
+Approach to Implementing the New Business Rule
+Rule: Tasks overdue for more than 7 days should be marked as Abandoned unless they are High Priority.
+Implementation plan:
+- Modify TaskService: Add logic to check overdue tasks and update their status.
+- Update TaskScheduler: Ensure a daily job runs to enforce the rule.
+- Confirm TaskStatus enum: Verify “Abandoned” exists or add it.
+- Optional: Add notifications to users when tasks are auto-abandoned.
+- Testing: Write unit tests for overdue detection and integration tests for scheduler execution.
+
+Strategies for Approaching Unfamiliar Code
+- Start with configuration files (package.json, pom.xml) to identify technologies.
+- Search by keywords (e.g., “export”, “download”, “status”) to locate relevant features.
+- Diagram entities early to visualize relationships.
+- Use AI prompts to validate assumptions and uncover overlooked components.
+- Iteratively refine understanding by comparing initial guesses with confirmed findings.
+
+Reflection
+- The Domain Understanding Prompt was most helpful, as it clarified the business concepts driving the codebase.
+- Next time, I would begin with entry points and routing files to quickly map the flow of requests.
+- Additional tools like IDE search, database ER diagrams, and API documentation would complement AI prompting and accelerate comprehension.
+Footer
